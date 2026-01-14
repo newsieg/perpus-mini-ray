@@ -7,10 +7,10 @@
         <div class="alert alert-success">{{ session('status') }}</div>
     @endif
     <div class="card">
-        <div class="card-header">
+            <div class="card-header">
             <form method="GET" action="{{ url('/books') }}" class="form-inline">
                 <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Cari judul..." value="{{ request('q') }}">
+                    <input type="text" name="q" class="form-control" placeholder="Cari judul atau author..." value="{{ request('q') }}">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit">Cari</button>
                         @if(request('q')) <a href="/books" class="btn btn-outline-danger">Reset</a> @endif

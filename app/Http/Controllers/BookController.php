@@ -12,7 +12,9 @@ class BookController extends Controller
     {
         $q = request()->query('q');
         if ($q) {
-            $books = Book::where('title', 'like', '%'.$q.'%')->get();
+            $books = Book::where('title', 'like', '%'.$q.'%')
+                ->orWhere('author', 'like', '%'.$q.'%')
+                ->get();
         } else {
             $books = Book::all();
         }

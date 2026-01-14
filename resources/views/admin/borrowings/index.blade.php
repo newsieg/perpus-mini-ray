@@ -54,8 +54,5 @@
                 </tbody>
             </table>
         </div>
-        <div class="card-footer">
-            <a href="/" class="btn btn-secondary">Lihat Buku</a>
-        </div>
     </div>
 @endsection

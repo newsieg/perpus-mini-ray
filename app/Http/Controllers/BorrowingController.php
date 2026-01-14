@@ -14,7 +14,6 @@ class BorrowingController extends Controller
         $user = Auth::user();
         $book = Book::findOrFail($bookId);
 
-        // pending borrowing request
         Borrowing::create([
             'user_id' => $user->id,
             'book_id' => $book->id,

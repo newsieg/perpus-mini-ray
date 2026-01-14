@@ -13,9 +13,7 @@
 </head>
 <body class="hold-transition sidebar-mini">
         <div class="wrapper">
-                <!-- Main Sidebar Container -->
                 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-                    <!-- Brand Logo -->
                     <a href="/" class="brand-link">
                         <span class="brand-image img-circle elevation-3" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:rgba(255,255,255,0.1);">
                                 <i class="fas fa-book" style="font-size:20px;color:#fff"></i>
@@ -40,12 +38,24 @@
                         <!-- Sidebar Menu -->
                         <nav class="mt-2">
                             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                                @auth
+                                    @if(auth()->user()->role === 'admin')
+                                        <li class="nav-item">
+                                            <a href="/admin/dashboard" class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}">
+                                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                                <p>Dashboard</p>
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endauth
+                                @if(!auth()->check() || auth()->user()->role !== 'admin')
                                 <li class="nav-item">
                                     <a href="/" class="nav-link {{ request()->is('/') || request()->is('books*') ? 'active' : '' }}">
                                         <i class="nav-icon fas fa-book"></i>
                                         <p>Daftar Buku</p>
                                     </a>
                                 </li>
+                                @endif
                                 @auth
                                         @if(auth()->user()->role === 'admin')
                                                 <li class="nav-item">
@@ -90,12 +100,9 @@
                                 @endauth
                             </ul>
                         </nav>
-                        <!-- /.sidebar-menu -->
                     </div>
-                    <!-- /.sidebar -->
                 </aside>
 
-                <!-- Content Wrapper. Contains page content -->
                 <div class="content-wrapper">
                         <div class="content-header">
                                 <div class="container-fluid">
@@ -119,5 +126,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"></script>
-</body>
+    </script>
+        @yield('scripts')
+    </body>
 </html>
